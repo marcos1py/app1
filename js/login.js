@@ -21,17 +21,4 @@ document.addEventListener("DOMContentLoaded", () => {
         const correctPassword = "1234";
 
         // 6. Verifica se o usuário e a senha estão corretos
-        if (username === correctUsername && password === correctPassword) {
-            
-            // SUCESSO: Redireciona o usuário para a página de dashboard
-            // Note o caminho do arquivo
-            window.location.href = "pages/dashboard.html";
-
-        } else {
-            
-            // FALHA: Exibe uma mensagem de erro
-            errorMessage.textContent = "Usuário ou senha inválidos. Tente 'user' e '1234'.";
-        
-        }
-    });
-});
+        if (username
