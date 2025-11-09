@@ -4,6 +4,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. Seleciona os elementos do DOM
     const loginForm = document.getElementById("login-form");
     const errorMessage = document.getElementById("error-message");
+    const usernameInput = document.getElementById("username");
+    const rememberCheckbox = document.getElementById("remember");
+
+    // Lógica para lembrar o usuário ao carregar a página
+    const rememberedUsername = localStorage.getItem('rememberedUsername');
+    if (rememberedUsername) {
+        usernameInput.value = rememberedUsername;
+        rememberCheckbox.checked = true;
+    }
 
     // 2. Adiciona um "ouvinte" para o evento de 'submit' (envio) do formulário
     loginForm.addEventListener("submit", (event) => {
@@ -21,17 +30,5 @@ document.addEventListener("DOMContentLoaded", () => {
         const correctPassword = "1234";
 
         // 6. Verifica se o usuário e a senha estão corretos
-        if (username === correctUsername && password === correctPassword) {
-            
-            // SUCESSO: Redireciona o usuário para a página de dashboard
-            // Note o caminho do arquivo
-            window.location.href = "pages/dashboard.html";
-
-        } else {
-            
-            // FALHA: Exibe uma mensagem de erro
-            errorMessage.textContent = "Usuário ou senha inválidos. Tente 'user' e '1234'.";
-        
-        }
-    });
-});
+        if (username
+correctUsername && password
