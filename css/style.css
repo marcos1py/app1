@@ -49,6 +49,21 @@ body {
     font-size: 1rem;
 }
 
+/* Estilos para o checkbox 'Lembrar-me' */
+.remember-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.remember-group input {
+    margin-right: 0.5rem;
+}
+
+.remember-group label {
+    color: #555;
+}
+
 /* Botão */
 .login-button {
     width: 100%;
