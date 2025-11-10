@@ -7,13 +7,29 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+
+    <script>
+        // Protege a página: verifica se o token JWT existe no localStorage.
+        // Se não existir, o usuário é redirecionado para a página de login.
+        if (!localStorage.getItem('jwtToken')) {
+            window.location.href = '../index.html';
+        }
+    </script>
     
     <div class="login-container dashboard-container">
         <h1>Bem-vindo!</h1>
         <p>Você fez o login com sucesso.</p>
         
-        <a href="../index.html">Sair (Logout)</a>
+        <a href="../index.html" id="logout-link">Sair (Logout)</a>
     </div>
+
+    <script>
+        // Adiciona a funcionalidade de logout ao link "Sair"
+        document.getElementById('logout-link').addEventListener('click', function() {
+            // Remove o token de autenticação do localStorage antes de redirecionar
+            localStorage.removeItem('jwtToken');
+        });
+    </script>
 
 </body>
 </html>
