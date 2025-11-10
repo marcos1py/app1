@@ -9,11 +9,60 @@
 <body>
     
     <div class="login-container dashboard-container">
-        <h1>Bem-vindo!</h1>
+        <h1 id="welcome-message">Bem-vindo!</h1>
         <p>Você fez o login com sucesso.</p>
         
-        <a href="../index.html">Sair (Logout)</a>
+        <a href="#" id="logout-link">Sair (Logout)</a>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const token = sessionStorage.getItem("authToken");
+            const welcomeMessage = document.getElementById("welcome-message");
+            const logoutLink = document.getElementById("logout-link");
+
+            // 1. Proteção de Rota: Verifica se o token existe no sessionStorage
+            if (!token) {
+                // Se não houver token, redireciona para a página de login
+                alert("Acesso negado. Por favor, faça o login.");
+                window.location.href = "../index.html";
+                return; // Impede a execução do restante do script
+            }
+
+            // 2. Validação e Extração de Dados do Token (Mock)
+            try {
+                // Em um app real, o backend validaria a assinatura do token.
+                // Aqui, apenas decodificamos o payload para obter os dados do usuário.
+                const payloadBase64 = token.split('.')[1];
+                const decodedPayload = JSON.parse(atob(payloadBase64));
+                const username = decodedPayload.username;
+
+                // 3. Personaliza a página com o nome do usuário
+                if (username) {
+                    welcomeMessage.textContent = `Bem-vindo, ${username}!`;
+                }
+
+            } catch (error) {
+                console.error("Erro ao processar o token:", error);
+                // Se o token for inválido, limpa a sessão e redireciona
+                sessionStorage.removeItem("authToken");
+                alert("Sessão inválida. Por favor, faça o login novamente.");
+                window.location.href = "../index.html";
+                return;
+            }
+            
+            // 4. Lógica de Logout
+            logoutLink.addEventListener("click", (event) => {
+                event.preventDefault(); // Previne a navegação padrão do link
+                
+                // Remove o token do sessionStorage
+                sessionStorage.removeItem("authToken");
+                
+                // Avisa o usuário e redireciona para a página de login
+                alert("Você saiu com sucesso.");
+                window.location.href = "../index.html";
+            });
+        });
+    </script>
 </body>
 </html>
