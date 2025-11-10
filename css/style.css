@@ -47,6 +47,14 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Adicionando transição suave */
+}
+
+/* Efeito de foco para os inputs, melhorando a UX */
+.form-group input:focus {
+    outline: none; /* Remove a borda de foco padrão do navegador */
+    border-color: #007bff; /* Cor azul para indicar foco */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Sombra externa suave */
 }
 
 /* Estilos para o checkbox 'Lembrar-me' */
