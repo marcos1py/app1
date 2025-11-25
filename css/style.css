@@ -6,54 +6,69 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+    /* Fontes mais modernas e fundo gradiente suave */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-/* Contêiner do formulário */
+/* Contêiner do formulário com sombra mais suave e efeito sutil */
 .login-container {
     background-color: #ffffff;
     padding: 2.5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada e suave */
     width: 100%;
     max-width: 400px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.login-container:hover {
+    transform: translateY(-5px); /* Efeito sutil ao passar o mouse */
 }
 
 .login-container h1 {
     text-align: center;
     color: #333;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem; /* Mais espaço abaixo do título */
+    font-weight: 600;
 }
 
 /* Grupos de formulário (label + input) */
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem; /* Espaçamento ajustado */
 }
 
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
     color: #555;
+    font-weight: 500;
 }
 
 .form-group input {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.85rem; /* Padding mais confortável */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2193b0; /* Cor de destaque no foco */
+    box-shadow: 0 0 8px rgba(33, 147, 176, 0.3); /* Efeito de brilho */
 }
 
 /* Estilos para o checkbox 'Lembrar-me' */
 .remember-group {
     display: flex;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem; /* Mais espaço antes do botão */
 }
 
 .remember-group input {
@@ -62,36 +77,38 @@ body {
 
 .remember-group label {
     color: #555;
+    font-size: 0.9rem;
 }
 
-/* Botão */
+/* Botão com cor primária e efeito de hover */
 .login-button {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.85rem;
     border: none;
     border-radius: 5px;
-    background-color: #000000; /* preto */
+    background-color: #007BFF; /* Cor primária mais moderna */
     color: white;
-    font-size: 1rem;
+    font-size: 1.1rem; /* Fonte ligeiramente maior */
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .login-button:hover {
-    background-color: #333; /* preto - hover */
+    background-color: #0056b3; /* Tom mais escuro no hover */
+    transform: translateY(-2px); /* Efeito de elevação */
 }
 
 /* Classe para a mensagem de erro */
 .error-message {
-    color: #d93025; /* Vermelho */
+    color: #d93025;
     font-size: 0.9rem;
     text-align: center;
     margin-bottom: 1rem;
     min-height: 1em; /* Garante que o layout não pule */
 }
 
-/* Estilo para a página de dashboard */
+/* Estilo para a página de dashboard (INTACTO) */
 .dashboard-container {
     text-align: center;
 }
