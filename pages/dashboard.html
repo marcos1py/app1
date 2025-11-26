@@ -1,68 +1,28 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-    
-    <div class="login-container dashboard-container">
-        <h1 id="welcome-message">Bem-vindo!</h1>
-        <p>Você fez o login com sucesso.</p>
-        
-        <a href="#" id="logout-link">Sair (Logout)</a>
-    </div>
+errorMessage.textContent = "";
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const token = sessionStorage.getItem("authToken");
-            const welcomeMessage = document.getElementById("welcome-message");
-            const logoutLink = document.getElementById("logout-link");
-
-            // 1. Proteção de Rota: Verifica se o token existe no sessionStorage
-            if (!token) {
-                // Se não houver token, redireciona para a página de login
-                alert("Acesso negado. Por favor, faça o login.");
-                window.location.href = "../index.html";
-                return; // Impede a execução do restante do script
+            // 8. Lógica do "Lembrar-me"
+            if (rememberMe) {
+                // Salva o nome de usuário no localStorage para persistir entre sessões
+                localStorage.setItem("rememberedUsername", username);
+            } else {
+                // Remove o nome de usuário se a opção não estiver marcada
+                localStorage.removeItem("rememberedUsername");
             }
 
-            // 2. Validação e Extração de Dados do Token (Mock)
-            try {
-                // Em um app real, o backend validaria a assinatura do token.
-                // Aqui, apenas decodificamos o payload para obter os dados do usuário.
-                const payloadBase64 = token.split('.')[1];
-                const decodedPayload = JSON.parse(atob(payloadBase64));
-                const username = decodedPayload.username;
-
-                // 3. Personaliza a página com o nome do usuário
-                if (username) {
-                    welcomeMessage.textContent = `Bem-vindo, ${username}!`;
-                }
-
-            } catch (error) {
-                console.error("Erro ao processar o token:", error);
-                // Se o token for inválido, limpa a sessão e redireciona
-                sessionStorage.removeItem("authToken");
-                alert("Sessão inválida. Por favor, faça o login novamente.");
-                window.location.href = "../index.html";
-                return;
-            }
+            // 9. Simula a criação de um token de sessão (JWT) para manter a consistência
+            // com a página de dashboard, que espera um token.
+            const mockPayload = { username: username, role: "user" };
+            const mockToken = "header." + btoa(JSON.stringify(mockPayload)) + ".signature";
             
-            // 4. Lógica de Logout
-            logoutLink.addEventListener("click", (event) => {
-                event.preventDefault(); // Previne a navegação padrão do link
-                
-                // Remove o token do sessionStorage
-                sessionStorage.removeItem("authToken");
-                
-                // Avisa o usuário e redireciona para a página de login
-                alert("Você saiu com sucesso.");
-                window.location.href = "../index.html";
-            });
-        });
-    </script>
-</body>
-</html>
+            // Armazena o token na sessionStorage (dura apenas enquanto a aba estiver aberta)
+            sessionStorage.setItem("authToken", mockToken);
+
+            // 10. SUCESSO: Redireciona o usuário para a página de dashboard
+            window.location.href = "pages/dashboard.html";
+
+        } else {
+            // FALHA: Exibe uma mensagem de erro
+            errorMessage.textContent = "Usuário ou senha inválidos. Tente 'user' e '1234'.";
+        }
+    });
+});
