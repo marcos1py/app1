@@ -1,109 +1,77 @@
-/* Reset básico e estilo do body */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Definição de variáveis de tema (Modo Claro - Padrão) */
+:root {
+    --bg-color: #f0f2f5;
+    --container-bg: #ffffff;
+    --text-color: #333;
+    --text-secondary-color: #555;
+    --border-color: #ccc;
+    --input-bg: #fff;
+    --button-bg: #000000;
+    --button-text-color: #ffffff;
+    --button-hover-bg: #333;
+    --link-color: #007bff;
+    --error-color: #d93025;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Variáveis para o Modo Escuro */
+body.dark-mode {
+    --bg-color: #121212;
+    --container-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --text-secondary-color: #b0b0b0;
+    --border-color: #444;
+    --input-bg: #2c2c2c;
+    --button-bg: #bb86fc;
+    --button-text-color: #000000;
+    --button-hover-bg: #a76ef4;
+    --link-color: #bb86fc;
+    --error-color: #cf6679;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Botão de troca de tema */
+.theme-toggle-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle-button:hover {
+    transform: scale(1.1);
 }
 
 /* Contêiner do formulário */
 .login-container {
-    background-color: #ffffff;
+    background-color: var(--container-bg);
     padding: 2.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-}
-
-.login-container h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 1.5rem;
-}
-
-/* Grupos de formulário (label + input) */
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #555;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-/* Estilos para o checkbox 'Lembrar-me' */
-.remember-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.remember-group input {
-    margin-right: 0.5rem;
-}
-
-.remember-group label {
-    color: #555;
-}
-
-/* Botão */
-.login-button {
-    width: 100%;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #000000; /* preto */
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.login-button:hover {
-    background-color: #333; /* preto - hover */
-}
-
-/* Classe para a mensagem de erro */
-.error-message {
-    color: #d93025; /* Vermelho */
-    font-size: 0.9rem;
-    text-align: center;
-    margin-bottom: 1rem;
-    min-height: 1em; /* Garante que o layout não pule */
-}
-
-/* Estilo para a página de dashboard */
-.dashboard-container {
-    text-align: center;
-}
-
-.dashboard-container a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 1rem;
-    display: inline-block;
-}
-
-.dashboard-container a:hover {
-    text-decoration: underline;
-}
