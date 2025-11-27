@@ -1,50 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Definição de variáveis de tema (Modo Claro - Padrão) */
+/* --- Futuristic Design Variables --- */
+
+/* Light Mode (Default) */
 :root {
-    --bg-color: #f0f2f5;
-    --container-bg: #ffffff;
-    --text-color: #333;
-    --text-secondary-color: #555;
-    --border-color: #ccc;
-    --input-bg: #fff;
-    --button-bg: #000000;
+    --bg-gradient-start: #e0eafc;
+    --bg-gradient-end: #cfdef3;
+    --container-bg: rgba(255, 255, 255, 0.6);
+    --text-color: #1a202c;
+    --text-secondary-color: #4a5568;
+    --border-color: rgba(255, 255, 255, 0.8);
+    --input-bg: rgba(255, 255, 255, 0.5);
+    --input-border-focus: #6a11cb;
+    --accent-gradient: linear-gradient(45deg, #6a11cb, #2575fc);
     --button-text-color: #ffffff;
-    --button-hover-bg: #333;
-    --link-color: #007bff;
-    --error-color: #d93025;
+    --button-hover-shadow: 0 0 20px rgba(106, 17, 203, 0.5);
+    --link-color: #2575fc;
+    --error-color: #e53e3e;
     --shadow-color: rgba(0, 0, 0, 0.1);
+    --theme-icon: '☀️';
 }
 
-/* Variáveis para o Modo Escuro */
+/* Dark Mode */
 body.dark-mode {
-    --bg-color: #121212;
-    --container-bg: #1e1e1e;
-    --text-color: #e0e0e0;
-    --text-secondary-color: #b0b0b0;
-    --border-color: #444;
-    --input-bg: #2c2c2c;
-    --button-bg: #bb86fc;
-    --button-text-color: #000000;
-    --button-hover-bg: #a76ef4;
-    --link-color: #bb86fc;
-    --error-color: #cf6679;
+    --bg-gradient-start: #0f0c29;
+    --bg-gradient-end: #302b63;
+    --container-bg: rgba(20, 20, 40, 0.5);
+    --text-color: #e2e8f0;
+    --text-secondary-color: #a0aec0;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(0, 0, 0, 0.2);
+    --input-border-focus: #00f2fe;
+    --accent-gradient: linear-gradient(45deg, #fc00ff, #00dbde);
+    --button-text-color: #ffffff;
+    --button-hover-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+    --link-color: #00f2fe;
+    --error-color: #ff7f7f;
     --shadow-color: rgba(0, 0, 0, 0.5);
+    --theme-icon: '🌙';
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: var(--bg-color);
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(45deg, var(--bg-gradient-start), var(--bg-gradient-end));
     color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background 0.5s ease, color 0.5s ease;
+    overflow: hidden;
 }
 
 /* Botão de troca de tema */
@@ -56,22 +67,147 @@ body {
     color: var(--text-color);
     border: 1px solid var(--border-color);
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
 }
 
 .theme-toggle-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 0 15px var(--shadow-color);
 }
 
-/* Contêiner do formulário */
+.theme-toggle-button::before {
+    content: var(--theme-icon);
+}
+
+/* Contêiner do formulário - Efeito Glassmorphism */
 .login-container {
     background-color: var(--container-bg);
-    padding: 2.5rem;
+    padding: 2.5rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 var(--shadow-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.login-container h1 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary-color);
+    font-weight: 300;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: var(--text-secondary-color);
+    opacity: 0.7;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--input-border-focus);
+    box-shadow: 0 0 10px rgba(106, 17, 203, 0.3);
+}
+
+.error-message {
+    color: var(--error-color);
+    min-height: 1.2em;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.remember-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1.5rem;
+    gap: 0.5rem;
+}
+
+.remember-group label {
+    color: var(--text-secondary-color);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.remember-group input[type="checkbox"] {
+    accent-color: var(--input-border-focus);
+}
+
+.login-button {
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 10px;
+    background: var(--accent-gradient);
+    color: var(--button-text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--button-hover-shadow);
+}
+
+/* Estilos para a página de Dashboard */
+.dashboard-container {
+    text-align: center;
+}
+
+.dashboard-container p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: var(--text-secondary-color);
+}
+
+.dashboard-container a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.dashboard-container a:hover {
+    text-decoration: underline;
+}
